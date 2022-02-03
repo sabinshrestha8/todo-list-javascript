@@ -28,3 +28,11 @@ addForm.addEventListener("submit", (e) => {
         addForm.reset();
     }
 });
+
+// deleting todo
+list.addEventListener("click", (e) => {
+    if (e.target.tagName == "I") {
+        e.target.parentNode.remove();
+    }
+    // console.log(e);
+});
