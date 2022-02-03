@@ -43,8 +43,6 @@ const filterTodos = (key) => {
     Array.from(list.children)
         // filter and put unmatched todos to new array
         .filter((todo) => {
-            // console.log(todo.textContent);
-            // return true;
             return !todo.textContent.toLowerCase().includes(key);
         })
         // add classList "filtered" to unmatched todos
