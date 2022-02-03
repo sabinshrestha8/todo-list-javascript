@@ -25,5 +25,6 @@ addForm.addEventListener("submit", (e) => {
     if (todo.length) {
         // invoking the generateTemplate function
         generateTemplate(todo);
+        addForm.reset();
     }
 });
