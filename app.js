@@ -1,5 +1,7 @@
+// getting reference by querying in the DOM
 const addForm = document.querySelector(".add");
 const list = document.querySelector(".todos");
+const search = document.querySelector(".search input");
 
 const generateTemplate = (todo) => {
     // inside span outputting todo a user types using template string
@@ -34,5 +36,38 @@ list.addEventListener("click", (e) => {
     if (e.target.tagName == "I") {
         e.target.parentNode.remove();
     }
-    // console.log(e);
+});
+
+const filterTodos = (key) => {
+    // changing collection to array
+    Array.from(list.children)
+        // filter and put unmatched todos to new array
+        .filter((todo) => {
+            // console.log(todo.textContent);
+            // return true;
+            return !todo.textContent.toLowerCase().includes(key);
+        })
+        // add classList "filtered" to unmatched todos
+        .forEach((todo) => {
+            todo.classList.add("filtered");
+        });
+
+    Array.from(list.children)
+        // filter and put matched todos to new array
+        .filter((todo) => {
+            return todo.textContent.toLowerCase().includes(key);
+        })
+        // remove classList "filtered" to matched todos
+        .forEach((todo) => {
+            todo.classList.remove("filtered");
+        });
+};
+
+// keyup event
+search.addEventListener("keyup", () => {
+    // getting value a user types in
+    const key = search.value.trim().toLowerCase();
+
+    // invoking filterTodos function to search & filter todos
+    filterTodos(key);
 });
